@@ -102,8 +102,8 @@ for (let numeroReserva = 1; numeroReserva <= 20; numeroReserva++) {
     }
 }*/
 
-/*-----------------------------Cuarta Entrega-------------------------------------------*/
-
+/*-----------------------------Cuarta Entrega-------------------------------------------
+                    Desafío: Simulador interactivo
 
 
 let nombre
@@ -151,4 +151,109 @@ do{
     
     nuevaReserva = confirm("Desea Realizar una nueva reserva?")
 
-}while(nuevaReserva)
+}while(nuevaReserva)*/
+
+
+
+
+/*-------------------------    Funciones relacionadas -----------------*/
+let nombre
+let horario
+let edad
+const precioPromo = 500
+const costoReserva = 300
+
+function solicitarNombre() {
+    nombre = prompt("Ingrese su nombre")
+}
+
+function solicitarEdad() {
+    edad = parseInt(prompt("Ingrese su edad"))
+}
+
+function validarEdad() {
+    let mayorDeEdad = (edad >= 18)
+    if (mayorDeEdad == false) {
+        return false
+    } else {
+        return true
+    }
+}
+
+function registrarHorario() {
+    horario = parseInt(prompt("Ingrese el horario. Ej: 18"))
+}
+
+function reservaNocturna() {
+    if (horario >= 20) {
+        confirmarReserva = confirm("A partir de las 20hrs, las reservas tienen un costo anticipado de $" + costoReserva + ".\n Desea continuar con la reserva?")
+        if (confirmarReserva) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+function confirmarPromo() {
+    confirmar = confirm("Tenemos promos de tragos por un precio de $" + precioPromo + "\nDesea comprar alguna promo?")
+    if (confirmar) {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+function calcularPromo(cantidad) {
+
+    const montoTotal = precioPromo * cantidad
+    return montoTotal
+}
+
+function calcularMonto(cantidad) {
+    const montoTotal = costoReserva + calcularPromo(cantidad)
+    return montoTotal
+}
+
+function mostrarReserva() {
+
+
+    let reserva = "Su reserva se ha registrado a nombre de: " + nombre
+        + ".\nHorario de reserva:  " + horario + "hrs"
+    let mensajeMonto = "\nSu total a pagar es de $"
+
+    if (reservaNocturna()) {
+        if (confirmarPromo()) {
+            cantidad = parseInt(prompt("Ingrese la cantidad de tragos que desea comprar"))
+            return reserva + mensajeMonto + calcularMonto(cantidad)
+        } else {
+            return reserva + mensajeMonto + costoReserva
+        }
+    } else {
+        if (confirmarPromo()) {
+            cantidad = parseInt(prompt("Ingrese la cantidad de tragos que desea comprar"))
+            return reserva + mensajeMonto + calcularPromo(cantidad)
+        } else {
+
+            return reserva
+        }
+    }
+
+
+}
+
+alert("Bienvenido a AlgoBar")
+do {
+    alert("Ingrese los datos para una realizar una reserva")
+    solicitarEdad()
+    if (validarEdad() == true) {
+        solicitarNombre()
+        registrarHorario();
+        alert(mostrarReserva())
+
+        nuevaReserva = confirm("Desea Realizar una nueva reserva?")
+    } else {
+        alert("Lo sentimos! Las reservas son solo para mayores de edad")
+    }
+} while (nuevaReserva)

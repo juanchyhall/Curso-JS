@@ -52,13 +52,13 @@ if(validarEdad){
 */
 
 
-/*-----------------------------Tercera Entrega-------------------------------------------*/
+/*-----------------------------Tercera Entrega-------------------------------------------
 alert("Ingrese sus datos para una nueva reserva")
 for (let numeroReserva = 1; numeroReserva <= 20; numeroReserva++) {
     let nombreCompleto = prompt("Ingrese su nombre y apellido").toUpperCase()
     let edad = parseInt(prompt("Ingrese su edad"))
     let validarEdad = (edad >= 18)
-    
+
     if (validarEdad) {
         alert("Ingrese la fecha que quiera realizar la reserva")
 
@@ -100,10 +100,55 @@ for (let numeroReserva = 1; numeroReserva <= 20; numeroReserva++) {
         alert("Las reservas son solo para mayores de edad")
         break;
     }
+}*/
+
+/*-----------------------------Cuarta Entrega-------------------------------------------*/
+
+
+
+let nombre
+let horario 
+let edad 
+
+function solicitarNombre(){
+    nombre = prompt("Ingrese su nombre")
 }
 
+function solicitarEdad() {
+    edad = parseInt(prompt("Ingrese su edad"))
+}
 
+function validarEdad() {
+    let mayorDeEdad = (edad>=18)
+    if(mayorDeEdad == false){
+        return false
+    }else{
+        return true
+    }
+}
 
+function registrarHorario() {
+    horario = parseInt(prompt("Ingrese el horario. Ej: 18"))
+}
 
+function mostrarReserva() {
+    
+    let reserva = "Su reserva se ha registrado a nombre de: "+nombre
+    +".\nHorario de reserva:  "+ horario+"hrs"
+    return reserva
+}
+alert("Bienvenido a AlgoBar")
+do{
+    alert("Ingrese los datos para una realizar una reserva")
+    solicitarEdad()
+    if(validarEdad()== true){
+        solicitarNombre()
+        registrarHorario();
+        alert(mostrarReserva());
+    }else{
+        alert("Lo sentimos! Las reservas son solo para mayores de edad")
+    }
+    
+    nuevaReserva = confirm("Desea Realizar una nueva reserva?")
 
-
+}while(nuevaReserva)

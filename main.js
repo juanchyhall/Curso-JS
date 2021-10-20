@@ -30,7 +30,7 @@ if(validarEdad){
         alert("Debe ingresar un dia del calendario")
         dia = parseInt(prompt("Dia: "))
     }
-    
+
 
      mes = parseInt(prompt("Mes: "))
 
@@ -46,7 +46,7 @@ if(validarEdad){
   {alert("Su reserva se ha realizado con exito para el "+fechaReserva+
             "\n A nombre de "+nombreCompleto+
             "\n Muchas gracias!")
- }else{      
+ }else{
      alert("Usted no es mayor de edad! No puede realizar la reserva.")
     }}
 */
@@ -107,8 +107,8 @@ for (let numeroReserva = 1; numeroReserva <= 20; numeroReserva++) {
 
 
 let nombre
-let horario 
-let edad 
+let horario
+let edad
 
 function solicitarNombre(){
     nombre = prompt("Ingrese su nombre")
@@ -132,7 +132,7 @@ function registrarHorario() {
 }
 
 function mostrarReserva() {
-    
+
     let reserva = "Su reserva se ha registrado a nombre de: "+nombre
     +".\nHorario de reserva:  "+ horario+"hrs"
     return reserva
@@ -148,7 +148,7 @@ do{
     }else{
         alert("Lo sentimos! Las reservas son solo para mayores de edad")
     }
-    
+
     nuevaReserva = confirm("Desea Realizar una nueva reserva?")
 
 }while(nuevaReserva)*/
@@ -156,7 +156,7 @@ do{
 
 
 
-/*-------------------------    Funciones relacionadas -----------------*/
+/*-------------------------    Funciones relacionadas -----------------
 let nombre
 let horario
 let edad
@@ -244,6 +244,7 @@ function mostrarReserva() {
 }
 
 alert("Bienvenido a AlgoBar")
+
 do {
     alert("Ingrese los datos para una realizar una reserva")
     solicitarEdad()
@@ -256,4 +257,113 @@ do {
     } else {
         alert("Lo sentimos! Las reservas son solo para mayores de edad")
     }
-} while (nuevaReserva)
+} while (nuevaReserva)*/
+
+/*-------------------------  Quinta Entrega-----------------
+
+class Reserva {
+    constructor(nombre, apellido, dia, horario) {
+        this.nombre = nombre
+        this.apellido = apellido
+        this.dia = dia
+        this.horario = horario
+        this.nombreCompleto = function () {
+            return this.nombre + ", " + this.apellido
+
+        }
+        this.mostrarReserva = function () {
+            alert("Su reserva se ah realizado a nombre de " + this.nombreCompleto() +
+                "\nDia: " + this.dia + ". Hora: " + this.horario + ":00hrs")
+        }
+    }
+
+}
+
+const reserva = new Reserva()
+function consultarNombre() {
+    reserva.nombre = prompt("Ingrese su nombre")
+}
+function consultarApellido() {
+    reserva.apellido = prompt("Ingrese su apellido")
+}
+function registrarDia() {
+    reserva.dia = parseInt(prompt("Ingrese el dia "))
+
+}
+function registrarHora() {
+    reserva.horario = parseInt(prompt("Ingrese la hora "))
+}
+
+function nuevaReserva() {
+    alert("Ingrese los datos para una nueva reserva")
+    consultarNombre()
+    consultarApellido()
+    registrarDia()
+    registrarHora()
+}
+
+
+// const reservaEjemplo = new Reserva("Maria","Gelen",05,20)
+// reservaEjemplo.mostrarReserva()
+
+
+
+alert("Reserva ingresando datos")
+do {
+    nuevaReserva()
+    reserva.mostrarReserva()
+    for (const reservaProps in reserva) {
+        console.log(reserva[reservaProps])
+    }
+
+
+
+    confirmar = confirm("Desea realizar otra reserva?")
+} while (confirmar)*/
+
+
+/*-------------------------  Sexta Entrega-----------------*/
+
+class Reserva{
+    constructor(nombre,apellido,dia, hora ){
+        this.nombre = nombre
+        this.apellido = apellido
+        this.dia = dia
+        this.hora = hora
+    }
+
+}
+let nombreReserva = ""
+let apellidoReserva = ""
+let diaReserva = 0
+let horaReserva
+let listadoReservas= []
+function consultarDatosReserva(){
+    nombreReserva= prompt("Ingrese el nombre").toUpperCase()
+    apellidoReserva=prompt("Ingrese su apellido").toUpperCase()
+    diaReserva = parseInt(prompt("Ingrese el dia para la reserva"))
+    horaReserva = parseInt(prompt("Ingrese la hora de la reserva"))
+}
+function crearReserva() {
+    const reserva = new Reserva(nombreReserva,apellidoReserva, diaReserva,horaReserva)
+    
+    listadoReservas.push(reserva)
+
+}
+function listarReservas(){
+    for(let i = 0;i<listadoReservas.length;i++){
+
+        console.log(listadoReservas[i])
+    }
+}
+function ejecutarReserva(){
+    do{
+        alert("Ingrese los datos para una nueva reserva")
+        consultarDatosReserva()
+        crearReserva()
+        
+        nuevaReserva = confirm("Desea realizar otra reserva?")
+    }while(nuevaReserva)
+}
+ejecutarReserva()
+listarReservas()

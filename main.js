@@ -126,8 +126,27 @@ function ordenarPorNombre() {
     console.log("Listado por nombre de la A a la Z")
     console.log(listadoOrdenado)
 }
+//Recorro con un for el listado de reservas y va generando cada reserva cargada en un listado
+//generando el html con las propiedades del objeto
+function mostrarReservas() {
+    for(var reserva of listadoReservas){
+        let ul = document.getElementById("ul")
+        let contenedor = document.createElement("div")
+        contenedor.innerHTML = `
+        <br>
+        <li>Nombre: ${reserva.nombre}</li>
+        <li>Apellido: ${reserva.apellido}</li>
+        <li>Dia: ${reserva.dia}</li>
+        <li>Hora: ${reserva.hora}hrs</li>
+        <br>`  
+
+        ul.appendChild(contenedor)
+    }
+}
+
+
 //Ejecucion de las funciones
 ejecutarReserva()
 listarReservas()
 ordenarPorNombre()
-
+mostrarReservas()

@@ -23,7 +23,7 @@ function limpiar() {
 }
 
 //funcion para ir mostrando las reservas en una lista
-function mostrarReservas(reserva) {
+function mostrarEnLista(reserva) {
 
     let ul = document.getElementById("ul")
     let contenedor = document.createElement("div")
@@ -45,7 +45,7 @@ btnNuevaReserva.onclick = () => {
     const div = document.getElementById("formularioReserva")
     const formReserva = document.createElement("div")
     formReserva.innerHTML =
-    `<br>
+        `<br>
     <label>Nombre</label><input id="txtNombre"></input><br>
     <label>Apellido</label><input id="txtApellido"></input><br>
     <label>Dia</label><input id="txtDia"></input><br>
@@ -57,20 +57,22 @@ btnNuevaReserva.onclick = () => {
     //boton para guardar la reserva
     const btnGuardar = document.getElementById("btnGuardar")
     btnGuardar.onclick = () => {
-        
-        nombreReserva = document.getElementById("txtNombre").value
-        apellidoReserva = document.getElementById("txtApellido").value
-        diaReserva = document.getElementById("txtDia").value
-        horaReserva = document.getElementById("txtHora").value
+        confirmar = confirm("Desea confirmar la reserva?")
+        if (confirmar) {
+            nombreReserva = document.getElementById("txtNombre").value
+            apellidoReserva = document.getElementById("txtApellido").value
+            diaReserva = document.getElementById("txtDia").value
+            horaReserva = document.getElementById("txtHora").value
 
+            const reserva = new Reserva(nombreReserva, apellidoReserva, diaReserva, horaReserva)
 
+            listadoReservas.push(reserva)
 
-        const reserva = new Reserva(nombreReserva, apellidoReserva, diaReserva, horaReserva)
-
-        listadoReservas.push(reserva)
-
-        limpiar()
-        mostrarReservas(reserva)
+            limpiar()
+            mostrarEnLista(reserva)
+        }else{
+            limpiar()
+        }
 
         console.log(listadoReservas)
     }
